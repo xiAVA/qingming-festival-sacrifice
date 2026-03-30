@@ -63,7 +63,7 @@
       <div class="ritual-progress">
         <div class="ritual-progress-inner" :style="{ width: ritualProgress + '%' }"></div>
       </div>
-      <div class="feedback" v-if="feedbackText">{{ feedbackText }}</div>
+      <!-- <div class="feedback" v-if="feedbackText">{{ feedbackText }}</div> -->
 
       <div class="altar-stage">
       <div class="altar-items">
@@ -136,8 +136,8 @@ export default {
       smokeTimer: null,
       incenseTimer: null,
       flowerTimer: null,
-      feedbackText: '',
-      feedbackTimer: null,
+      // feedbackText: '',
+      // feedbackTimer: null,
       recentActions: [],
     };
   },
@@ -159,24 +159,24 @@ export default {
     if (this.smokeTimer) clearTimeout(this.smokeTimer);
     if (this.incenseTimer) clearTimeout(this.incenseTimer);
     if (this.flowerTimer) clearTimeout(this.flowerTimer);
-    if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
+    // if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
   },
   methods: {
     pushAction(text) {
       this.recentActions.unshift({ id: `${Date.now()}-${Math.random()}`, text });
       if (this.recentActions.length > 4) this.recentActions.pop();
     },
-    showFeedback(text) {
-      if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
-      this.feedbackText = text;
-      this.feedbackTimer = setTimeout(() => {
-        this.feedbackText = '';
-      }, 900);
-    },
+    // showFeedback(text) {
+    //   if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
+    //   this.feedbackText = text;
+    //   this.feedbackTimer = setTimeout(() => {
+    //     this.feedbackText = '';
+    //   }, 900);
+    // },
     onIncense() {
       this.incenseCount += 1;
       this.incenseBurstCount = 1;
-      this.showFeedback('清香已敬上');
+      // this.showFeedback('清香已敬上');
       this.pushAction('点燃一炷清香');
       if (this.incenseTimer) clearTimeout(this.incenseTimer);
       this.incenseTimer = setTimeout(() => {
@@ -187,7 +187,7 @@ export default {
       this.flowerCount += 1;
       this.flowerBurstToken += 1;
       this.flowerBurstCount = 3;
-      this.showFeedback('花束已献上');
+      //  this.showFeedback('花束已献上');
       this.pushAction('献上一束鲜花');
       if (this.flowerTimer) clearTimeout(this.flowerTimer);
       this.flowerTimer = setTimeout(() => {
@@ -201,12 +201,12 @@ export default {
       this.incenseBurstCount = 0;
       this.wishPreset = '';
       this.smokeVisible = false;
-      this.feedbackText = '';
+      // this.feedbackText = '';
       this.recentActions = [];
       if (this.smokeTimer) clearTimeout(this.smokeTimer);
       if (this.incenseTimer) clearTimeout(this.incenseTimer);
       if (this.flowerTimer) clearTimeout(this.flowerTimer);
-      if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
+      // if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
     },
   },
 };
